@@ -6,7 +6,6 @@ export default function StarRating() {
     const [rating, setRating] = useState(0);
 
     const ratingChanged = (newRating) => {
-        console.log(`New rating is: ${newRating}`);
         setRating(newRating);
         return rating;
     };
