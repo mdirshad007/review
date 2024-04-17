@@ -2,6 +2,7 @@ import Button from "../components/common/Button/Button";
 import InputFields from "../components/common/FormElement/InputFields";
 import Radio from "../components/common/FormElement/Radio";
 import StarRating from "../components/common/FormElement/StarRating";
+import Textarea from "../components/common/FormElement/Textarea";
 
 export default function page() {
   const radioData=["Yes","No"]
@@ -17,7 +18,8 @@ export default function page() {
             <StarRating labelName="How did you like the taste and quality of the food you ordered?" className="mt-3 mb-3 text-base" mainClassName="w-[49%]"/>
             </div>
             <Radio mainClassName="mt-6 mb-3" labelName="Do you think our prices are fair considering the food and service quality?" radioData={radioData}/>
-            <Button>Submit</Button>
+            <Textarea labelName="Can you tell us about any specific dish or part of your experience that was particularly good or bad?"/>
+            <Button>Send</Button>
         </form>
         </div>
     </section>

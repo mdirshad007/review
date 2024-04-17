@@ -19,7 +19,7 @@ export default function Radio({ mainClassName, labelName,radioData }) {
               id={`radio-id-`+id}
               value={item}
             />
-            <label htmlFor={`radio-id-`+id} className="text-sm text-gray-500 ms-2">
+            <label htmlFor={`radio-id-`+id} className="text-sm text-gray-500 ms-2 cursor-pointer">
             {item}
             </label>
           </div>
