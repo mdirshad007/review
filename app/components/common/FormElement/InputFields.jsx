@@ -15,7 +15,7 @@ export default function InputFields({
   return (
     <div className={`w-full mb-6 md:mb-0 ${mainDivClassName}`}>
       <label
-        className={`block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 ${labelClassName}`}
+        className={`block tracking-wide text-gray-700 text-base mb-2 ${labelClassName}`}
         htmlFor={id}
       ><span>{required}</span>
         {labelName}

@@ -2,14 +2,20 @@
 import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 
-export default function StarRating() {
+export default function StarRating({mainClassName, labelName, className}) {
     const [rating, setRating] = useState(0);
 
     const ratingChanged = (newRating) => {
         setRating(newRating);
         return rating;
     };
-
+    const getColor = (rating) => {
+      if (rating <= 1) return '#FF6347'; // red
+      if (rating === 2) return '#FF4500'; // orange red
+      if (rating === 3) return '#FFA500'; // yellow
+      if (rating === 4) return '#9ACD32'; // yellow green
+      return '#32CD32'; // green
+  };
     const ratingLabel = {
         0: "",
         1: "Poor",
@@ -20,6 +26,8 @@ export default function StarRating() {
     };
 
     return (
+      <div className={mainClassName}>
+        <p className={className}>{labelName}</p>
         <div className='flex gap-3 font-bold text-lg'>
             <ReactStars
                 size={20}
@@ -81,9 +89,11 @@ export default function StarRating() {
                   }
             />
          <div className=''>
-                {ratingLabel[rating]}
+         <span style={{ color: getColor(rating) }}>
+          {ratingLabel[rating]}
+          </span>
             </div>
-          </div>
-
+        </div>
+      </div>
     );
 }

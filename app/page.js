@@ -1,5 +1,4 @@
 import Link from "next/link";
-import InputFields from "./components/common/FormElement/InputFields";
 
 export default function Home() {
   return (
