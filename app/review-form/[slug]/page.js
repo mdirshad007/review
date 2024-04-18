@@ -10,6 +10,7 @@ export default function page({params}) {
     <section>
      
       <div className="max-w-[1140px] mx-auto py-10 px-5">
+        <p>Hello world!</p>
       <p>abc test {params.slag}</p>
         <form method="post" action="">
             <InputFields labelName="Name" placeholder="Enter Your Name" id="name" />
