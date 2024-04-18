@@ -4,11 +4,13 @@ import Radio from "../components/common/FormElement/Radio";
 import StarRating from "../components/common/FormElement/StarRating";
 import Textarea from "../components/common/FormElement/Textarea";
 
-export default function page() {
+export default function page({params}) {
   const radioData=["Yes","No"]
   return (
     <section>
+     
       <div className="max-w-[1140px] mx-auto py-10 px-5">
+      <p>{params.slag}</p>
         <form method="post" action="">
             <InputFields labelName="Name" placeholder="Enter Your Name" id="name" />
             <div className="flex gap-4 md:flex-row flex-col flex-wrap">
