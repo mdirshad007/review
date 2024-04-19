@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/app/components/common/Button/Button";
 import InputFields from "@/app/components/common/FormElement/InputFields";
 import Radio from "@/app/components/common/FormElement/Radio";
