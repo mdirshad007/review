@@ -6,6 +6,19 @@ import Textarea from "@/app/components/common/FormElement/Textarea";
 
 export default function page({params}) {
   const radioData=["Yes","No"]
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("https://review-reflection.vercel.app/store/feedback/brain-tech1");
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    }
+  
+    fetchData();
+  }, []);
   return (
     <section>
      
