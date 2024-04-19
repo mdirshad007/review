@@ -10,8 +10,7 @@ export default function page({params}) {
     <section>
      
       <div className="max-w-[1140px] mx-auto py-10 px-5">
-        <p>Hello world!</p>
-      <p>abc test {params.slag}</p>
+      <p>slug {params.slug}</p>
         <form method="post" action="">
             <InputFields labelName="Name" placeholder="Enter Your Name" id="name" />
             <div className="flex gap-4 md:flex-row flex-col flex-wrap">
