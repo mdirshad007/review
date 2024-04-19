@@ -1,31 +1,16 @@
-
-"use client"
 import Button from "@/app/components/common/Button/Button";
 import InputFields from "@/app/components/common/FormElement/InputFields";
 import Radio from "@/app/components/common/FormElement/Radio";
 import StarRating from "@/app/components/common/FormElement/StarRating";
 import Textarea from "@/app/components/common/FormElement/Textarea";
-import { useEffect } from "react";
 
 export default function page({params}) {
   const radioData=["Yes","No"]
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("https://review-reflection.vercel.app/store/feedback/brain-tech1");
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    }
-  
-    fetchData();
-  }, []);
   return (
     <section>
-     
-      <div className="max-w-[1140px] mx-auto py-10 px-5">
+     <p>abc test {params.slug}</p>
+      {/* <div className="max-w-[1140px] mx-auto py-10 px-5">
+        <p>Hello world!</p>
       <p>abc test {params.slug}</p>
         <form method="post" action="">
             <InputFields labelName="Name" placeholder="Enter Your Name" id="name" />
@@ -39,7 +24,7 @@ export default function page({params}) {
             <Textarea labelName="Can you tell us about any specific dish or part of your experience that was particularly good or bad?"/>
             <Button>Send</Button>
         </form>
-        </div>
+        </div> */}
     </section>
   )
 }
