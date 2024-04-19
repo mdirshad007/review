@@ -1,8 +1,8 @@
-import Button from "@aap/components/common/Button/Button";
-import InputFields from "@aap/components/common/FormElement/InputFields";
-import Radio from "@aap/components/common/FormElement/Radio";
-import StarRating from "@aap/components/common/FormElement/StarRating";
-import Textarea from "@aap/components/common/FormElement/Textarea";
+import Button from "@/app/components/common/Button/Button";
+import InputFields from "@/app/components/common/FormElement/InputFields";
+import Radio from "@/app/components/common/FormElement/Radio";
+import StarRating from "@/app/components/common/FormElement/StarRating";
+import Textarea from "@/app/components/common/FormElement/Textarea";
 
 export default function page({params}) {
   const radioData=["Yes","No"]
