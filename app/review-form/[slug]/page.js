@@ -12,7 +12,7 @@ export default function Page({ params }) { // Changed function name to start wit
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://review-reflection.vercel.app/store/feedback/brain-tech1");
+        const response = await fetch("https://review-reflection.vercel.app/store/feedback/brain-tech");
         const data = await response.json();
         console.log(data);
       } catch (error) {
