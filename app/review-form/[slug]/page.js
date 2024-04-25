@@ -21,7 +21,7 @@ export default function page({params}) {
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [storeData]);
 
 
   return (
