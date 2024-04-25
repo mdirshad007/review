@@ -8,6 +8,7 @@ import Textarea from "@/app/components/common/FormElement/Textarea";
 
 export default function Page({ params }) { // Changed function name to start with an uppercase letter
   const radioData=["Yes","No"];
+  const [storeData,setStoreData]=useState([]);
   
   useEffect(() => {
     async function fetchData() {
@@ -15,16 +16,20 @@ export default function Page({ params }) { // Changed function name to start wit
         const response = await fetch("https://review-reflection.vercel.app/store/feedback/brain-tech");
         const data = await response.json();
         console.log(data);
+        setStoreData(data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     }
   
     fetchData();
-  }, []);
+  }, [storeData]);
 
   return (
     <section>
+      {
+        console.log(storeData)
+      }
       <div className="max-w-[1140px] mx-auto py-10 px-5">
         <p>slug {params.slug}</p>
         <form method="post" action="">
