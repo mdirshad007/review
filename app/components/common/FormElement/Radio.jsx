@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Radio({ mainClassName, labelName,radioData }) {
   const a=[1,2,3];
-  console.log(radioData);
   return (
     <div className={mainClassName}>
       <p className="mb-4">{labelName}</p>
