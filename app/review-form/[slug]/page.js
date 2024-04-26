@@ -4,9 +4,11 @@ import InputFields from "@/app/components/common/FormElement/InputFields";
 import Radio from "@/app/components/common/FormElement/Radio";
 import StarRating from "@/app/components/common/FormElement/StarRating";
 import Textarea from "@/app/components/common/FormElement/Textarea";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function page({params}) {
+  const basUrl="https://rev-ref.s3.amazonaws.com/";
   const radioData=["Yes","No"]
   const [storeData,setStoreData]=useState([]);
   async function fetchData() {
@@ -21,13 +23,22 @@ export default function page({params}) {
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [storeData]);
 
 
   return (
     <section>
      
       <div className="max-w-[1140px] mx-auto py-10 px-5">
+        {
+        
+        }
+        {/* <Image
+        width={200}
+        height={200}
+        className="w-40 h-40"
+        src={storeData?.brain?.bg_img}
+        /> */}
       <h1 className="text-4xl mb-3 capitalize">Welcome to {storeData?.brain?.store_name}</h1>
       <p className="mb-5">
         {storeData?.brain?.tag_line}
