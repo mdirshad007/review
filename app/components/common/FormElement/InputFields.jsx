@@ -10,11 +10,12 @@ export default function InputFields({
     type="text",
     id="",
     error="Please fill out this field.",
+    key,
     required
 
 }) {
   return (
-    <div className={`w-full mb-6 md:mb-0 ${mainDivClassName}`}>
+    <div className={`w-full mb-6 md:mb-0 ${mainDivClassName}`} key={key}>
       <label
         className={`block tracking-wide text-gray-700 text-base mb-2 ${labelClassName}`}
         htmlFor={id}
