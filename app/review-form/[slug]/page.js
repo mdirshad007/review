@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 export default function Page({ params }) {
   const baseUrl = "https://rev-ref.s3.amazonaws.com/";
   const [storeData, setStoreData] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const path = params.slug;
   let radioData = ["Yes", "No"];
 
@@ -19,14 +20,26 @@ export default function Page({ params }) {
           `https://review-reflection.vercel.app/store/feedback/${path}`
         );
         const data = await response.json();
-        setStoreData(data);
+        if(!data.statusCode){
+          setStoreData(data);
+        } else {
+          setNotFound(true);
+        }
       } catch (error) {
         console.error("Failed to fetch data:", error);
+        setNotFound(true);
       }
     }
 
     fetchData();
   }, [path]);
+
+  useEffect(() => {
+    if (notFound) {
+      // Redirect to not-found page
+      window.location.href = '/not-found';
+    }
+  }, [notFound]);
 
   return (
     <section>
