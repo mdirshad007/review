@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 
-export default function StarRating({mainClassName, labelName, className}) {
+export default function StarRating({mainClassName, labelName, className,key}) {
     const [rating, setRating] = useState(0);
 
     const ratingChanged = (newRating) => {
@@ -26,9 +26,9 @@ export default function StarRating({mainClassName, labelName, className}) {
     };
 
     return (
-      <div className={mainClassName}>
+      <div className={mainClassName} key={key}>
         <p className={className}>{labelName}</p>
-        <div className='flex gap-3 font-bold text-lg'>
+        <div className='flex gap-3 font-bold text-lg absolute bottom-0'>
             <ReactStars
                 size={20}
                 count={5}

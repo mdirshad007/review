@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 
-export default function Textarea({labelName="Label",className}) {
+export default function Textarea({labelName="Label",className,key}) {
   return (
-    <div className="mt-5">
+    <div className="mt-5" key={key}>
       <label
         htmlFor={`textarea`}
         className="block mb-4"
