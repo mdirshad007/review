@@ -1,11 +1,8 @@
-"use client";
 import Button from "@/app/components/common/Button/Button";
-import Dropdown from "@/app/components/common/FormElement/Dropdown";
 import InputFields from "@/app/components/common/FormElement/InputFields";
 import Radio from "@/app/components/common/FormElement/Radio";
 import StarRating from "@/app/components/common/FormElement/StarRating";
 import Textarea from "@/app/components/common/FormElement/Textarea";
-import { useEffect, useState } from "react";
 
 async function getStoreData(path){
   let sData=await fetch(`https://review-reflection.vercel.app/store/feedback/${path}`);
@@ -44,7 +41,7 @@ export default async function Page({ params }) {
                 {
                   <div className="flex gap-4 md:flex-row flex-col flex-wrap w-full">
 
-                    {storeData.questions.map((item, id) =>
+                    {storeData?.questions?.map((item, id) =>
                       item.answer_type === "single integer" ? (
                         <StarRating
                           labelName={item?.question_text}
@@ -58,7 +55,7 @@ export default async function Page({ params }) {
                     )}
                   </div>
                 }
-              {storeData.questions.map((item, id) =>
+              {storeData?.questions?.map((item, id) =>
                 item.answer_type === "Boolean" ? (
                   <Radio
                     mainClassName="mt-6 mb-3"
@@ -70,7 +67,7 @@ export default async function Page({ params }) {
                   ""
                 )
               )}
-              {storeData.questions.map((item, id) =>
+              {storeData?.questions?.map((item, id) =>
                 item.answer_type === "string" ? (
                   <InputFields
                   labelName={item.question_text} key={id}
@@ -79,7 +76,7 @@ export default async function Page({ params }) {
                   ""
                 )
               )}
-              {storeData.questions.map((item, id) =>
+              {storeData?.questions?.map((item, id) =>
                 item.answer_type === "paragraph" ? (
                   <Textarea labelName={item.question_text} key={id} />
                 ) : (
@@ -94,4 +91,22 @@ export default async function Page({ params }) {
       </div>
     </section>
   );
+}
+
+export function generateMetadata({params}){
+  function convertHyphenToSpaceAndCapitalize(text) {
+    // Split the text based on hyphens
+    var words = text.split('-');
+    
+    // Capitalize the first letter of each word
+    for (var i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+    
+    // Join the words back together with spaces
+    return words.join(' ');
+}
+  return{
+    title:`Review Store Form ${convertHyphenToSpaceAndCapitalize(params.slug)}`
+  }
 }
