@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 
-export default function StarRating({mainClassName, labelName, className,key}) {
+export default function StarRating({mainClassName, labelName, className,key,ratingCallBack}) {
     const [rating, setRating] = useState(0);
 
     const ratingChanged = (newRating) => {
         setRating(newRating);
+        ratingCallBack(newRating)
         return rating;
     };
     const getColor = (rating) => {
