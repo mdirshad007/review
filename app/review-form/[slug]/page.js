@@ -38,6 +38,7 @@ export default function Page({ params }) {
  
   const handelRatingValue=(ratingData)=>{
     setRating(ratingData)
+    console.log(ratingData)
   }
   const handelTextString=(stringData)=>{
     console.log(stringData)
