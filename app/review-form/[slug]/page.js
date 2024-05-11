@@ -12,6 +12,7 @@ export default function Page({ params }) {
   const [ratings, setRatings] = useState({});
   const [textInputs, setTextInputs] = useState({});
   const [radioSelections, setRadioSelections] = useState({});
+  const [postData,setPostData]=useState({})
 
   const path = params.slug;
   let radioData = ["Yes", "No"];
@@ -57,16 +58,26 @@ export default function Page({ params }) {
 
   const handleSendFeedback = () => {
     // Combine all the data
-    const feedbackData = {
-      ratings: ratings,
-      radioSelections: radioSelections,
-      textInputs: textInputs,
-    };
-
-    // Send the feedback data to your API or perform further actions
-    console.log(feedbackData);
+  const feedbackData = {
+    user_id: 4, // or whichever user ID you want to include
+    answer: {
+      ...ratings,
+      ...radioSelections,
+      ...textInputs
+    }
   };
 
+ 
+    // Send the feedback data to your API or perform further actions   
+    console.log(feedbackData);
+    return feedbackData
+  };
+
+  useEffect(() => {
+    const postData = handleSendFeedback();
+    setPostData(postData);
+  }, [ratings, radioSelections, textInputs]); // Watching for changes in these states
+  
   return (
     <section>
       <div className="max-w-[1140px] mx-auto py-10 px-5">
