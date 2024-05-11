@@ -35,12 +35,16 @@ export default function Page({ params }) {
   }, []);
 
   const handleRatingValue = (questionId, ratingData) => {
-    console.log(questionId," ",ratingData)
+    if(!questionId){
+      console.log(questionId," ",ratingData) 
+    }
     setRatings((prevRatings) => ({ ...prevRatings, [questionId]: ratingData }));
   };
 
   const handleTextValue = (questionId, textData) => {
-    console.log(questionId," ",textData)
+    if(!questionId){
+      console.log(questionId," ",textData) 
+    }
     setTextInputs((prevTextInputs) => ({ ...prevTextInputs, [questionId]: textData }));
   };
 
