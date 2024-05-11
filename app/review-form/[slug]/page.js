@@ -15,6 +15,7 @@ export default function Page({ params }) {
   const [storeData,setStoreData]=useState(null)
   const [rating,setRating]=useState([])
   const [stringText,setStringText]=useState([])
+  const [radio,setRadio]=useState([])
   const path = params.slug;
   let radioData = ["Yes", "No"];
   
@@ -42,6 +43,9 @@ export default function Page({ params }) {
   }
   const handelTextString=(stringData)=>{
     console.log(stringData)
+  }
+  const handelRadioValue=(radioData)=>{
+    console.log(radioData)
   }
 
   return (
@@ -87,6 +91,7 @@ export default function Page({ params }) {
                     labelName={item.question_text}
                     key={id}
                     radioData={radioData}
+                    radioCallBack={handelRadioValue}
                   />
                 ) : (
                   ""
@@ -94,10 +99,6 @@ export default function Page({ params }) {
               )}
               {storeData?.questions?.map((item, id) =>
                 item.answer_type === "string" ? (
-              //     <InputFields
-              //     labelName={item.question_text} key={id}
-              //     aaa={handelTextString}
-              // />
               <InputText
               labelName={item.question_text} key={id}
               sendDataToParent={handelTextString}
