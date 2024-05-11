@@ -7,7 +7,7 @@ export default function StarRating({mainClassName, labelName, className,key,rati
 
     const ratingChanged = (newRating) => {
         setRating(newRating);
-        ratingCallBack(newRating)
+        ratingCallBack(key,newRating)
         return rating;
     };
     const getColor = (rating) => {

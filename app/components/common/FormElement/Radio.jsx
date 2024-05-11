@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Radio({ mainClassName, labelName, radioData, key, sendDataToParent,radioCallBack }) {
+export default function Radio({ mainClassName, labelName, radioData, key,radioCallBack }) {
   const [selectedValue, setSelectedValue] = useState(null);
   const radioName = Math.floor((Math.random() * 100000000) + 1);
 
