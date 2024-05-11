@@ -12,7 +12,7 @@ export default function Page({ params }) {
   const [ratings, setRatings] = useState({});
   const [textInputs, setTextInputs] = useState({});
   const [radioSelections, setRadioSelections] = useState({});
-  const [postData,setPostData]=useState({})
+  // const [postData,setPostData]=useState({})
 
   const path = params.slug;
   let radioData = ["Yes", "No"];
@@ -66,17 +66,27 @@ export default function Page({ params }) {
       ...textInputs
     }
   };
-
  
     // Send the feedback data to your API or perform further actions   
     console.log(feedbackData);
+    postFeedback(feedbackData)
     return feedbackData
   };
 
-  useEffect(() => {
-    const postData = handleSendFeedback();
-    setPostData(postData);
-  }, [ratings, radioSelections, textInputs]); // Watching for changes in these states
+  const  postFeedback=async (feedbackData)=>{
+    let response=await fetch("https://review-reflection.vercel.app/store/feedback",{
+        method:"Post",
+        body:JSON.stringify(feedbackData)
+    }
+    );
+    response= await response.json()
+    console.log(response);
+}
+
+  // useEffect(() => {
+  //   const postData = handleSendFeedback();
+  //   setPostData(postData);
+  // }, [ratings, radioSelections, textInputs]); // Watching for changes in these states
   
   return (
     <section>
