@@ -87,6 +87,10 @@ export default function Page({ params }) {
   //   const postData = handleSendFeedback();
   //   setPostData(postData);
   // }, [ratings, radioSelections, textInputs]); // Watching for changes in these states
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("refresh prevented");
+  };
   
   return (
     <section>
@@ -102,6 +106,7 @@ export default function Page({ params }) {
             />
             <h1 className="text-4xl mb-3 capitalize">Welcome to {storeData.store_name}</h1>
             <p className="mb-5">{storeData.tag_line}</p>
+            <form onSubmit={onSubmit}>
             {storeData?.questions?.map((item, id) => {
               switch (item.answer_type) {
                 case "single integer":
@@ -139,6 +144,7 @@ export default function Page({ params }) {
               }
             })}
             <Button onClick={handleSendFeedback}>Send</Button>
+            </form>
           </>
         )}
       </div>

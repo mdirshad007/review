@@ -13,7 +13,7 @@ export default function InputText({
     required,
     sendDataToParent,
   }) {
-    const [stringText, setStringText] = useState(null);
+    const [stringText, setStringText] = useState("");
     useEffect(() => {
       sendDataToParent(stringText);
     }, [stringText]);
