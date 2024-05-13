@@ -68,7 +68,7 @@ export default function ProfileForm() {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials":true,
-                "Access-Control-Allow-Origin":"https://review-kappa-two.vercel.app/",
+                "Access-Control-Allow-Origin":"https://review-kappa-two.vercel.app",
                 "Access-Control-Allow-Methods":"GET,DELETE,PATCH,POST,PUT",
                 "Access-Control-Allow-Headers":"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
             },
