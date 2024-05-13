@@ -76,6 +76,13 @@ export default function Page({ params }) {
   const  postFeedback=async (feedbackData)=>{
     let response=await fetch("https://review-reflection.vercel.app/store/feedback",{
         method:"Post",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials":true,
+          "Access-Control-Allow-Origin":"*",
+          "Access-Control-Allow-Methods":"GET,DELETE,PATCH,POST,PUT",
+          "Access-Control-Allow-Headers":"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+      },
         body:JSON.stringify(feedbackData)
     }
     );
