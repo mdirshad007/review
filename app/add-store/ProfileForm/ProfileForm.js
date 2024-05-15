@@ -5,7 +5,7 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import ImageUploading from "react-images-uploading";
-import 'react-select-search/style.css'
+// import 'react-select-search/style.css'
 import SelectSearch from 'react-select-search';
 
 export default function ProfileForm() {
@@ -99,8 +99,6 @@ export default function ProfileForm() {
     fetchData();
   }, []);
 
-  const handelStoreCategory=()
-
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -126,7 +124,7 @@ export default function ProfileForm() {
             options={dropdownOption}
             search
             placeholder="Select category..." // Placeholder text
-            onChange={handelStoreCategory} // Handle selected option
+            onChange={(value) => console.log(value)} // Handle selected option
           />
         </div>
 
