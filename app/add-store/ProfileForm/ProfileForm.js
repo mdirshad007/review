@@ -99,7 +99,11 @@ export default function ProfileForm() {
     fetchData();
   }, []);
 
-  const handelStoreCategory=()
+  const [dropdownSelectedValue,setDropdownSelectedValue]=useState()
+  const handelStoreCategory=(value)=>{
+    setDropdownSelectedValue(value)
+    console.log(value)
+  }
 
   return (
     <div>
@@ -126,7 +130,7 @@ export default function ProfileForm() {
             options={dropdownOption}
             search
             placeholder="Select category..." // Placeholder text
-            onChange={handelStoreCategory} // Handle selected option
+            onChange={()=>handelStoreCategory(value)} // Handle selected option
           />
         </div>
 
