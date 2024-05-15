@@ -85,6 +85,7 @@ export default function ProfileForm() {
         name: item.store_category_name,
         value: item.id // Assuming "id" is the unique identifier for each category
       }));
+      console.log(dropdown)
     } catch (error) {
       console.error("Error fetching store data:", error);
       return [];
