@@ -103,8 +103,11 @@ export default function ProfileForm() {
   const [dropdownSelectedValue,setDropdownSelectedValue]=useState()
   const handelStoreCategory=(value)=>{
     setDropdownSelectedValue(value)
-    console.log(value)
+    console.log(dropdownSelectedValue)
   }
+  useEffect(()=>{
+    handelStoreCategory(dropdownSelectedValue)
+  },[dropdownSelectedValue])
 
   return (
     <div>
@@ -131,7 +134,8 @@ export default function ProfileForm() {
             options={dropdownOption}
             search
             placeholder="Select category..." // Placeholder text
-            onChange={()=>handelStoreCategory(value)} // Handle selected option
+            // onChange={()=>handelStoreCategory(value)} // Handle selected option
+            onChange={(value) => handelStoreCategory(value)}
           />
         </div>
 
