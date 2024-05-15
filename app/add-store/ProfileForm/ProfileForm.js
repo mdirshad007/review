@@ -5,7 +5,7 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import ImageUploading from "react-images-uploading";
-// import 'react-select-search/style.css'
+import 'react-select-search/style.css'
 import SelectSearch from 'react-select-search';
 
 export default function ProfileForm() {
@@ -85,6 +85,7 @@ export default function ProfileForm() {
         name: item.store_category_name,
         value: item.id // Assuming "id" is the unique identifier for each category
       }));
+      console.log(dropdown)
     } catch (error) {
       console.error("Error fetching store data:", error);
       return [];
@@ -98,6 +99,15 @@ export default function ProfileForm() {
     }
     fetchData();
   }, []);
+
+  const [dropdownSelectedValue,setDropdownSelectedValue]=useState()
+  const handelStoreCategory=(value)=>{
+    setDropdownSelectedValue(value)
+    console.log(dropdownSelectedValue)
+  }
+  useEffect(()=>{
+    handelStoreCategory(dropdownSelectedValue)
+  },[dropdownSelectedValue])
 
   return (
     <div>
@@ -124,7 +134,8 @@ export default function ProfileForm() {
             options={dropdownOption}
             search
             placeholder="Select category..." // Placeholder text
-            onChange={(value) => console.log(value)} // Handle selected option
+            // onChange={()=>handelStoreCategory(value)} // Handle selected option
+            onChange={(value) => handelStoreCategory(value)}
           />
         </div>
 
