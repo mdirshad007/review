@@ -1,20 +1,22 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import InputText from "@/app/components/common/FormElement/InputText";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import ImageUploading from "react-images-uploading";
+import 'react-select-search/style.css'
+import SelectSearch from 'react-select-search';
 
 export default function ProfileForm() {
   const [storeName, setStoreName] = useState("");
   const [tagLine, setTagLine] = useState("");
   const [foundingYear, setFoundingYear] = useState(null);
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = useState([]);
+  const [dropdownOption, setDropdownOption] = useState([]);
   const maxNumber = 69;
 
   const onImageChange = (imageList, addUpdateIndex) => {
-    // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
@@ -34,63 +36,70 @@ export default function ProfileForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("refresh prevented");
-    // Here you can submit the form data, e.g., send it to an API
-    // You can access storeName, tagLine, and value here for submission
   };
 
   const handelSubmitStore = () => {
-    console.log(
-      "Store profile data: Name",
-      storeName,
-      " tag Line:",
-      tagLine,
-      " Founding Year:",
-      foundingYear,
-      "Image : ",
-      images[0].data_url
-    );
-    let allDataStore={
-        "store_name":storeName,
-        "tag_line":tagLine,
-        "founding_year":foundingYear,
-        "file":images[0].data_url,
-        "user_id":4
-    }
-    
-    postStore(allDataStore)
-    console.log(allDataStore)
+    const formData = new FormData();
+    formData.append("store_name", storeName);
+    formData.append("tag_line", tagLine);
+    formData.append("founding_year", foundingYear);
+    formData.append("file", images[0].file);
+    formData.append("user_id", "4");
+
+    postStore(formData);
+    console.log(formData);
   };
 
-  const postStore = async (storeData) => {
+  const postStore = async (formData) => {
     try {
-        const response = await fetch("https://review-reflection.vercel.app/store/profile", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials":true,
-                "Access-Control-Allow-Origin":"https://review-kappa-two.vercel.app",
-                "Access-Control-Allow-Methods":"GET,DELETE,PATCH,POST,PUT",
-                "Access-Control-Allow-Headers":"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-            },
-            body: JSON.stringify(storeData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+      const response = await fetch(
+        "https://review-reflection.vercel.app/store/profile",
+        {
+          method: "POST",
+          body: formData,
         }
+      );
 
-        const data = await response.json();
-        console.log(data);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
-        console.error("Error:", error);
-        // Handle error (e.g., display error message to user)
+      console.error("Error:", error);
     }
-};
+  };
+
   useEffect(() => {
     if (dateValue instanceof Date) {
-      setFoundingYear(dateValue.getFullYear()); // Extract year from dateValue
+      setFoundingYear(dateValue.getFullYear());
     }
   }, [dateValue]);
+
+  const fetchDropdown = async () => {
+    try {
+      const dropdownData = await fetch('https://review-reflection.vercel.app/data/store-category');
+      const dropdown = await dropdownData.json();
+      return dropdown.map(item => ({
+        name: item.store_category_name,
+        value: item.id // Assuming "id" is the unique identifier for each category
+      }));
+    } catch (error) {
+      console.error("Error fetching store data:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchDropdown();
+      setDropdownOption(data);
+    }
+    fetchData();
+  }, []);
+
+  const handelStoreCategory=()
 
   return (
     <div>
@@ -108,27 +117,28 @@ export default function ProfileForm() {
           onChange={onChange}
           value={dateValue}
           maxDate={maxDate}
-          className={`appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 focus:border-green-700 placeholder:text-sm rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
+          className={`z-50 appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 focus:border-green-700 placeholder:text-sm rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
         />
+
+<div className="mb-5">
+          <p className="my-3">Select Store Category</p>
+          <SelectSearch
+            options={dropdownOption}
+            search
+            placeholder="Select category..." // Placeholder text
+            onChange={handelStoreCategory} // Handle selected option
+          />
+        </div>
+
 
         {/* Upload image code */}
         <ImageUploading
-          // multiple
           value={images}
           onChange={onImageChange}
           maxNumber={maxNumber}
           dataURLKey="data_url"
         >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            // write your building UI
+          {({ imageList, onImageUpload, isDragging, dragProps }) => (
             <div className="upload__image-wrapper">
               <button
                 style={isDragging ? { color: "red" } : undefined}
@@ -136,29 +146,27 @@ export default function ProfileForm() {
                 {...dragProps}
                 className="border border-gray-400 p-2 rounded-md"
               >
-                Click or Drop here
+                Click or Drop here your Logo
               </button>
               &nbsp;
-              {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />
-                  <div className="image-item__btn-wrapper">
-                    <button onClick={() => onImageUpdate(index)}>Update</button>
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
-                  </div>
                 </div>
               ))}
             </div>
           )}
         </ImageUploading>
+
+        
         <br />
+       
         <button
           onClick={handelSubmitStore}
           type="submit"
           className={`bg-green-700 text-white font-bold text-base flex justify-center items-center h-14 px-5 gap-3 rounded-lg mt-5`}
         >
-          submit
+          Submit
         </button>
       </form>
     </div>

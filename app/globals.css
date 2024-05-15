@@ -6,3 +6,6 @@
 .react-date-picker__wrapper {
     border: none !important;
 }
+.select-search-container{
+    @apply appearance-none block !w-full bg-gray-100 text-gray-700 border border-gray-200 focus:border-green-700 placeholder:text-sm rounded leading-tight focus:outline-none focus:bg-white
+}
