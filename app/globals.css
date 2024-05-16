@@ -9,3 +9,9 @@
 .select-search-container{
     @apply appearance-none block !w-full bg-gray-100 text-gray-700 border border-gray-200 focus:border-green-700 placeholder:text-sm rounded leading-tight focus:outline-none focus:bg-white
 }
+.select-search-input{
+    @apply !border-0;
+}
+.select-search-select{
+    @apply !border-[1px] border-gray-400
+}

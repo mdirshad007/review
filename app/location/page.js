@@ -1,6 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import MapIfram from '../components/MapIfram/MapIfram';
+import InputText from '../components/common/FormElement/InputText';
+import GetLocationByAddress from '../components/GetLocationByAddress/GetLocationByAddress';
 
 export default function Page() {
   const [locationData, setLocationData] = useState({});
@@ -14,6 +16,7 @@ export default function Page() {
     return data;
   };
 
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -33,10 +36,15 @@ export default function Page() {
     
   }
 
+
+
   return (
     <div>
      <button className='px-3 py-2 bg-green-700 text-white' onClick={handelClickToSearch}>Seatch My Location</button>
      <MapIfram latitude={latitude} longitude={longitude}/>
+     <div className='mt-5 max-w-[960px] mx-auto'>
+     <GetLocationByAddress/>
+     </div>
     </div>
   );
 }

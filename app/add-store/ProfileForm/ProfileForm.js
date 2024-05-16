@@ -45,6 +45,7 @@ export default function ProfileForm() {
     formData.append("founding_year", foundingYear);
     formData.append("file", images[0].file);
     formData.append("user_id", "4");
+    formData.append("store_category_id", dropdownSelectedValue);
 
     postStore(formData);
     console.log(formData);
@@ -107,7 +108,7 @@ export default function ProfileForm() {
   }
   useEffect(()=>{
     handelStoreCategory(dropdownSelectedValue)
-  },[dropdownSelectedValue])
+  },[])
 
   return (
     <div>
