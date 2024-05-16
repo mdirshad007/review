@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MapIfram({ latitude = "", longitude = "",className}) {
+export default function MapIfram({ latitude="20.7573478", longitude="72.1103371",className}) {
   return (
     <iframe
       id="iframeId"
