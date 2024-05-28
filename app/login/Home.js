@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Home({ userDetails }) {
+  console.log(userDetails);
   return (
     <div className="text-center p-[100px]">
       <img src={userDetails.photoURL} className="mx-auto rounded-full mb-5" />
