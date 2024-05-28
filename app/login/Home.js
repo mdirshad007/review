@@ -8,7 +8,7 @@ export default function Home({ userDetails }) {
       <button
         onClick={() => {
           localStorage.clear();
-          window.location.reload();
+          // window.location.reload();
         }}
       >
         Logout
