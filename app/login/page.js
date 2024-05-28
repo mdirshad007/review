@@ -8,9 +8,9 @@ export default function Page() {
   const [value, setValue] = useState({});
   const handelLogin = () => {
     signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.reloadUserInfo);
-      // console.log(data.user.reloadUserInfo);
-      localStorage.setItem("User", data.user.email);
+      console.log(data.user);
+      setValue(data.user);
+      localStorage.setItem("email", data.user.email);
     });
   };
   useEffect(() => {
